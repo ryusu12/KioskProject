@@ -14,19 +14,20 @@ public class Menu {
         this.category = category;
     }
 
+    // 메뉴를 리스트에 추가
     public void addMenuItems(MenuItem menuItem) {
         menuItems.add(menuItem);
     }
 
-    // List에 들어있는 MenuItem을 순차적으로 보여주는 함수
+    // List에 들어있는 MenuItem을 순차적으로 보여줌
     public void showMenuItems() {
         int num = 0;
         for (MenuItem menuItem : menuItems) {
-            System.out.println(++num + ". " + menuItem.getName() + "\t| W " + menuItem.getPrice() / 1000.0 + " | " + menuItem.getDescription());
+            System.out.printf(++num + ". %-17s | W " + menuItem.getPrice() / 1000.0 + " | " + menuItem.getDescription()+"%n", menuItem.getName());
         }
     }
 
-    // List를 리턴하는 함수
+    // List를 리턴
     public List<MenuItem> getMenuItems() {
         return menuItems;
     }
