@@ -17,35 +17,23 @@ public class Kiosk {
         }
     }
 
-    /*프로그램 실행*/
+    /*프로그램 진행하는 메서드
+    * 번호에 맞게 입력하면, 해당 카테고리 메뉴 선택 진행
+    * 0은 프로그램 종료
+    * 그외는 다시 입력받음*/
     public void start(List<Menu> menuList) {
         while (true) {
             // 상위 카테고리 메뉴 보여주기
-            showMenu(menuList);
+            showMenuList(menuList);
+            int choice = getChoice();
 
-            // MAIN MENU: 숫자 입력 받기
-            int mainChoice = getChoice();
-            if (mainChoice >= 1 && mainChoice <= menuList.size()) {
-                Menu categoryMenu = menuList.get(mainChoice - 1);
+            // 선택한 결과 진행하기
+            if (choice >= 1 && choice <= menuList.size()) {
+                Menu menu = menuList.get(choice - 1);
                 System.out.println();
-                while (true) {
-                    // 하위 카테고리 메뉴 보여주기
-                    showCategoryMenu(categoryMenu);
-                    // MENU: 숫자 입력 받기
-                    int choice = getChoice();
-                    if (choice >= 1 && choice <= categoryMenu.getMenuItems().size()) {
-                        MenuItem menuItem = categoryMenu.getMenuItems().get(choice - 1);
-                        showSelectMenu(menuItem);
-                        break;
-                    } else if (choice == 0) {
-                        System.out.println();
-                        break;
-                    } else {
-                        System.out.println("선택지에 없습니다.\n");
-                    }
-                }
-
-            } else if (mainChoice == 0) {
+                // 선택한 카테고리의 메뉴 선택 진행하기
+                startCategory(menu);
+            } else if (choice == 0) {
                 System.out.println("프로그램을 종료합니다.");
                 break;
             } else {
@@ -54,8 +42,31 @@ public class Kiosk {
         }
     }
 
+    /*선택한 카테고리의 메뉴 선택을 진행하는 메서드
+    * 번호에 맞게 입력하면, 선택한 메뉴 정보 보여주기 -> 상위 카테고리 메뉴로 이동
+    * 0은 상위 카테고리로 이동
+    * 그외는 다시 입력받음*/
+    private void startCategory(Menu menu) {
+        while (true) {
+            // 하위 카테고리 메뉴 보여주기
+            showCategoryMenu(menu);
+            int choice = getChoice();
+
+            // 선택한 결과 진행하기
+            if (choice >= 1 && choice <= menu.getMenuItems().size()) {
+                showSelectMenu(menu.getMenuItems().get(choice - 1));
+                break;
+            } else if (choice == 0) {
+                System.out.println();
+                break;
+            } else {
+                System.out.println("선택지에 없습니다.\n");
+            }
+        }
+    }
+
     /*상위 카테고리 메뉴를 출력하는 메서드*/
-    private void showMenu(List<Menu> menuList) {
+    private void showMenuList(List<Menu> menuList) {
         System.out.println("[ MAIN MENU ]");
         int num = 0;
         for (Menu menu : menuList) {
@@ -67,16 +78,13 @@ public class Kiosk {
     /*하위 카테고리 메뉴를 출력하는 메서드*/
     private void showCategoryMenu(Menu menu) {
         System.out.println("[ " + menu.getCategory() + " MENU ]");
-        // Menu가 가진 List<MenuItem>을 반복문을 활용하여 메뉴 출력
         menu.showMenuItems();
         System.out.println("0. 뒤로가기");
     }
 
-    /*선택한 메뉴 정보를 출력한다.
-     * 1~4 선택시 실행된다.*/
+    /*선택한 메뉴 정보를 출력하는 메서드.*/
     private void showSelectMenu(MenuItem menuItem) {
         System.out.print("선택한 메뉴 : ");
-        // 반복문을 활용해 menuItems를 탐색하면서 하나씩 접근한다.
         System.out.println(menuItem.getName() + "\t| W " + menuItem.getPrice() / 1000.0 + " | " + menuItem.getDescription() + "\n");
     }
 }
