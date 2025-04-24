@@ -10,8 +10,8 @@ public class Kiosk {
     private final List<MenuItem> menuItems;
 
     /*메뉴 설정하는 생성자*/
-    public Kiosk(MenuItem menu1, MenuItem menu2, MenuItem menu3, MenuItem menu4) {
-        this.menuItems = new ArrayList<>(List.of(menu1, menu2, menu3, menu4));
+    public Kiosk(List<MenuItem> menu) {
+        this.menuItems = new ArrayList<>(menu);
     }
 
     /*프로그램 실행*/
