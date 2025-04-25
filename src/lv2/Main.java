@@ -1,4 +1,4 @@
-package Lv2;
+package lv2;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -9,7 +9,7 @@ public class Main {
     /*메뉴 설정하는 메서드
      * MenuItem에 메뉴를 추가한다.
      * MenuItem의 정보를 List에 넣고 반환한다.*/
-    private List<MenuItem> setMenuItem() {
+    private List<MenuItem> initMenuItemList() {
         MenuItem shackBurger = new MenuItem("ShackBurger", 6900, "토마토, 양상추, 쉑소스가 토핑된 치즈버거");
         MenuItem smokeShack = new MenuItem("SmokeShack", 8900, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거");
         MenuItem cheeseburger = new MenuItem("Cheeseburger", 6900, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거");
@@ -33,7 +33,7 @@ public class Main {
      * 1~4 : 선택한 메뉴를 보여준다.
      * 그외 : 선택지에 없다는 문구 출력 => false 리턴 : 프로그램 계속 진행됨
      * 0 : 프로그램 종료 => true 리턴 : 프로그램 종료됨 */
-    private boolean showResult(int choice, List<MenuItem> menuItems) {
+    private boolean processMenu(int choice, List<MenuItem> menuItems) {
         switch (choice) {
             case 1:
                 showSelectMenu("ShackBurger", menuItems);
@@ -57,7 +57,7 @@ public class Main {
 
     /*번호를 입력받는 메서드
      * int형 외의 것을 입력받으면 -1 리턴 -> 결과 출력시, default로 이동 */
-    private int getChoice() {
+    private int inputChoice() {
         Scanner scan = new Scanner(System.in);
         try {
             return scan.nextInt();
@@ -71,7 +71,7 @@ public class Main {
         Main main = new Main();
 
         // 메뉴를 설정한다.
-        List<MenuItem> menuItems = main.setMenuItem();
+        List<MenuItem> menuItems = main.initMenuItemList();
 
         while (true) {
             // main 함수에서 MenuItem 클래스를 활용하여 햄버거 메뉴를 출력한다.
@@ -83,10 +83,10 @@ public class Main {
             System.out.println("0. 종료      | 종료");
 
             // 번호를 입력한다.
-            int choice = main.getChoice();
+            int choice = main.inputChoice();
 
             // 선택한 결과를 진행한다.
-            if (main.showResult(choice, menuItems)) break;
+            if (main.processMenu(choice, menuItems)) break;
         }
         System.out.println("프로그램을 종료합니다.");
     }

@@ -1,14 +1,14 @@
-package Lv5;
+package lv4;
 
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 /*키오스크 프로그램의 사용자 입력을 처리하는 클래스*/
-class Kiosk {
+public class Kiosk {
     /*번호를 입력받는 메서드
      * int형 외의 것을 입력받으면 -1 리턴 */
-    private int getChoice() {
+    private int inputChoice() {
         Scanner scan = new Scanner(System.in);
         try {
             return scan.nextInt();
@@ -21,11 +21,11 @@ class Kiosk {
     * 번호에 맞게 입력하면, 해당 카테고리 메뉴 선택 진행
     * 0은 프로그램 종료
     * 그외는 다시 입력받음*/
-    void start(List<Menu> menuList) {
+    public void start(List<Menu> menuList) {
         while (true) {
             // 상위 카테고리 메뉴 보여주기
             showMenuList(menuList);
-            int choice = getChoice();
+            int choice = inputChoice();
 
             // 선택한 결과 진행하기
             if (choice >= 1 && choice <= menuList.size()) {
@@ -50,7 +50,7 @@ class Kiosk {
         while (true) {
             // 하위 카테고리 메뉴 보여주기
             showCategoryMenu(menu);
-            int choice = getChoice();
+            int choice = inputChoice();
 
             // 선택한 결과 진행하기
             if (choice >= 1 && choice <= menu.getMenuItems().size()) {

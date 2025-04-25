@@ -1,4 +1,4 @@
-package Lv3;
+package lv3;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -21,16 +21,16 @@ public class Kiosk {
             showMenu();
 
             // 번호를 입력한다.
-            int choice = getChoice();
+            int choice = inputChoice();
 
             // 선택한 결과를 진행한다.
-            if (showResult(choice, menuItems)) break;
+            if (processMenu(choice, menuItems)) break;
         }
     }
 
     /*번호를 입력받는 메서드
      * int형 외의 것을 입력받으면 -1 리턴 -> 결과 출력시, default로 이동 */
-    private int getChoice() {
+    private int inputChoice() {
         Scanner scan = new Scanner(System.in);
         try {
             return scan.nextInt();
@@ -53,7 +53,7 @@ public class Kiosk {
      * 1~4 : 선택한 메뉴를 보여준다.
      * 그외 : 선택지에 없다는 문구 출력 => false 리턴 : 프로그램 계속 진행됨
      * 0 : 프로그램 종료 => true 리턴 : 프로그램 종료됨 */
-    private boolean showResult(int choice, List<MenuItem> menuItems) {
+    private boolean processMenu(int choice, List<MenuItem> menuItems) {
         switch (choice) {
             case 1:
                 showSelectMenu("ShackBurger", menuItems);

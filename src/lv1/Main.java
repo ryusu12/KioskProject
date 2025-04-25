@@ -1,4 +1,4 @@
-package Lv1;
+package lv1;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ public class Main {
     * 1~4 : 선택한 메뉴를 보여준다.
     * 그외 : 선택지에 없다는 문구 출력 => false 리턴 : 프로그램 계속 진행됨
     * 0 : 프로그램 종료 => true 리턴 : 프로그램 종료됨 */
-    private boolean showResult(int choice) {
+    private boolean processMenu(int choice) {
         switch (choice) {
             case 1:
                 System.out.print("선택한 메뉴 : ");
@@ -50,7 +50,7 @@ public class Main {
 
     /*번호를 입력받는 메서드
     * int형 외의 것을 입력받으면 -1 리턴 -> 결과 출력시, default로 이동 */
-    private int getChoice() {
+    private int inputChoice() {
         Scanner scan = new Scanner(System.in);
         try {
             return scan.nextInt();
@@ -67,10 +67,10 @@ public class Main {
             main.showMenu();
 
             // 번호를 입력한다.
-            int choice = main.getChoice();
+            int choice = main.inputChoice();
 
             // 선택한 결과를 진행한다.
-            if (main.showResult(choice)) break;
+            if (main.processMenu(choice)) break;
         }
         System.out.println("프로그램을 종료합니다.");
     }

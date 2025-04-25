@@ -1,4 +1,4 @@
-package Lv2;
+package lv2;
 
 public class MenuItem {
     private final String name;

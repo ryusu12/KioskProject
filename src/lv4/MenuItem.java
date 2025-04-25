@@ -1,5 +1,6 @@
-package Lv3;
+package lv4;
 
+/*개별 음식 항목을 관리하는 클래스*/
 public class MenuItem {
     private final String name;
     private final int price;

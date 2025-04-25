@@ -1,7 +1,7 @@
-package Lv4;
+package lv5;
 
 /*개별 음식 항목을 관리하는 클래스*/
-public class MenuItem {
+class MenuItem {
     private final String name;
     private final int price;
     private final String description;
@@ -12,15 +12,15 @@ public class MenuItem {
         this.description = description;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public int getPrice() {
+    int getPrice() {
         return price;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 }
