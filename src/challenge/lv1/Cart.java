@@ -6,19 +6,6 @@ import java.util.List;
 class Cart {
     private final List<CartItem> cart = new ArrayList<>();
 
-    /*show*/
-    void showCart() {
-        int num = 0;
-        for (CartItem cartItem : cart) {
-            System.out.printf(++num + ". %-17s | W " + cartItem.getPrice() / 1000.0 + " | " + cartItem.getCount() + "개 %n", cartItem.getName());
-        }
-    }
-
-    void showTotalPrice() {
-        System.out.println("\n[ Total ]");
-        System.out.println("W " + getTotalPrice() + "\n");
-    }
-
     /*get*/
     List<CartItem> getCart() {
         return cart;
@@ -32,6 +19,7 @@ class Cart {
         return totalPrice / 1000.0;
     }
 
+    /*Setter*/
     void addCart(CartItem addItem) {
         // 만약 카트에 같은 메뉴가 있으면, 그 메뉴를 가져옴
         CartItem item = cart.stream()

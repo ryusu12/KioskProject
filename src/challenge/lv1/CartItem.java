@@ -1,9 +1,9 @@
 package challenge.lv1;
 
-public class CartItem {
-    String name;
-    int price;
-    int count;
+class CartItem {
+    private final String name;
+    private final int price;
+    private int count;
 
     CartItem(MenuItem menuItem) {
         this.name = menuItem.getName();
@@ -11,6 +11,7 @@ public class CartItem {
         this.count = 1;
     }
 
+    /*Getter*/
     String getName() {
         return name;
     }
@@ -19,7 +20,7 @@ public class CartItem {
         return price;
     }
 
-    public int getCount() {
+    int getCount() {
         return count;
     }
 

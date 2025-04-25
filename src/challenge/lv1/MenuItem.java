@@ -12,6 +12,7 @@ class MenuItem {
         this.description = description;
     }
 
+    /*Getter*/
     String getName() {
         return name;
     }
