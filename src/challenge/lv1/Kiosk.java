@@ -17,10 +17,7 @@ class Kiosk {
         }
     }
 
-    /*프로그램 진행하는 메서드
-     * 번호에 맞게 입력하면, 해당 카테고리 메뉴 선택 진행
-     * 0은 프로그램 종료
-     * 그외는 다시 입력받음*/
+    /*상위 카테고리 메뉴 진행하는 메서드*/
     void start(List<Menu> menuList) {
         Cart cart = new Cart();
         while (true) {
@@ -32,7 +29,7 @@ class Kiosk {
             if (choice >= 1 && choice <= menuList.size()) {
                 Menu menu = menuList.get(choice - 1);
                 System.out.println();
-                // 선택한 카테고리의 메뉴 선택 진행하기
+                // 하위 카테고리의 메뉴 진행하기
                 startCategory(menu, cart);
             } else if (choice == menuList.size() + 1) {
                 // Orders를 선택한 경우
@@ -42,14 +39,14 @@ class Kiosk {
                     System.out.println("[ Orders ]");
                     // 장바구니 목록 가져오기
                     cart.showCart();
-                    double totalPrice = cart.getTotalPrice();
+                    cart.showTotalPrice();
                     System.out.println("1. 주문      2. 메뉴판");
 
                     choice = inputChoice();
                     if (choice == 1) {
                         // 장바구니 초기화
+                        System.out.println("주문이 완료되었습니다. 금액은 W " + cart.getTotalPrice() + " 입니다.\n");
                         cart.initCart();
-                        System.out.println("주문이 완료되었습니다. 금액은 W " + totalPrice + " 입니다.\n");
                         break;
                     } else if (choice == 2) {
                         System.out.println();
@@ -67,7 +64,7 @@ class Kiosk {
                     System.out.println("\n[ Cancel ]");
                     cart.showCart();
                     System.out.println("0. 뒤로가기");
-                    cart.getTotalPrice();
+                    cart.showTotalPrice();
 
                     System.out.println("몇번의 메뉴를 취소 하시겠습니까?");
                     choice = inputChoice();
@@ -90,10 +87,7 @@ class Kiosk {
         }
     }
 
-    /*선택한 카테고리의 메뉴 선택을 진행하는 메서드
-     * 번호에 맞게 입력하면, 선택한 메뉴 정보 보여주기 -> 상위 카테고리 메뉴로 이동
-     * 0은 상위 카테고리로 이동
-     * 그외는 다시 입력받음*/
+    /*하위 카테고리 메뉴 진행하는 메서드*/
     private void startCategory(Menu menu, Cart cart) {
         while (true) {
             // 하위 카테고리 메뉴 보여주기
@@ -113,7 +107,7 @@ class Kiosk {
                     choice = inputChoice();
                     if (choice == 1) {
                         cart.addCart(new CartItem(menuItem));
-                        System.out.println("SmokeShack 이 장바구니에 추가되었습니다.\n");
+                        System.out.println(menuItem.getName()+" 이 장바구니에 추가되었습니다.\n");
                         System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.\n");
                         break;
                     } else if (choice == 2) {
@@ -143,7 +137,7 @@ class Kiosk {
             System.out.println(++num + ". " + menu.getCategory());
         }
         System.out.println("0. 종료      | 종료");
-        if (!cart.isEmptyCart()) {
+        if (!cart.getCart().isEmpty()) {
             System.out.println("\n[ ORDER MENU ]");
             System.out.println("4. Orders       | 장바구니를 확인 후 주문합니다.");
             System.out.println("5. Cancel       | 진행중인 주문을 취소합니다.");

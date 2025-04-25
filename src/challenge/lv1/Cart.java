@@ -6,9 +6,36 @@ import java.util.List;
 class Cart {
     private final List<CartItem> cart = new ArrayList<>();
 
+    /*show*/
+    void showCart() {
+        int num = 0;
+        for (CartItem cartItem : cart) {
+            System.out.printf(++num + ". %-17s | W " + cartItem.getPrice() / 1000.0 + " | " + cartItem.getCount() + "개 %n", cartItem.getName());
+        }
+    }
+
+    void showTotalPrice() {
+        System.out.println("\n[ Total ]");
+        System.out.println("W " + getTotalPrice() + "\n");
+    }
+
+    /*get*/
+    List<CartItem> getCart() {
+        return cart;
+    }
+
+    double getTotalPrice() {
+        double totalPrice = 0;
+        for (CartItem cartItem : cart) {
+            totalPrice += cartItem.getPrice() * cartItem.getCount();
+        }
+        return totalPrice / 1000.0;
+    }
+
     void addCart(CartItem addItem) {
         // 만약 카트에 같은 메뉴가 있으면, 그 메뉴를 가져옴
-        CartItem item = cart.stream().filter(cartItem -> cartItem.getMenuItem().equals(addItem.getMenuItem()))
+        CartItem item = cart.stream()
+                .filter(cartItem -> cartItem.getName().equals(addItem.getName()))
                 .findFirst().orElse(null);
         // 같은 메뉴가 없다면, 카트에 추가하고
         if (item == null) {
@@ -19,38 +46,11 @@ class Cart {
         }
     }
 
-    List<CartItem> getCart() {
-        return cart;
-    }
-
-    void showCart() {
-        int num = 0;
-        for (CartItem cartItem : cart) {
-            MenuItem menuItem = cartItem.getMenuItem();
-            System.out.printf(++num + ". %-17s | W " + menuItem.getPrice() / 1000.0 + " | " + menuItem.getDescription() + " | " + cartItem.getCount() + "개 %n", menuItem.getName());
-        }
-    }
-
-    double getTotalPrice() {
-        double totalPrice = 0;
-        for (CartItem cartItem : cart) {
-            totalPrice += cartItem.getPrice() * cartItem.getCount();
-        }
-        totalPrice /= 1000.0;
-        System.out.println("\n[ Total ]");
-        System.out.println("W " + totalPrice + "\n");
-        return totalPrice;
-    }
-
     void initCart() {
         cart.clear();
     }
 
     void deleteCart(int index) {
         cart.remove(index);
-    }
-
-    boolean isEmptyCart() {
-        return cart.isEmpty();
     }
 }

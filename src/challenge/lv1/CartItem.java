@@ -1,29 +1,29 @@
 package challenge.lv1;
 
 public class CartItem {
-    // 메뉴명
-    MenuItem menuItem;
+    String name;
     int price;
     int count;
 
     CartItem(MenuItem menuItem) {
-        this.menuItem = menuItem;
+        this.name = menuItem.getName();
         this.price = menuItem.getPrice();
         this.count = 1;
     }
 
-    int getPrice() {
-        return this.price;
+    String getName() {
+        return name;
     }
 
-    MenuItem getMenuItem() {
-        return menuItem;
+    int getPrice() {
+        return price;
     }
 
     public int getCount() {
         return count;
     }
 
+    /*Setter*/
     void setCount() {
         this.count += 1;
     }
