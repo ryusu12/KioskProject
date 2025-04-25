@@ -30,10 +30,10 @@ class Kiosk {
             if (choice >= 1 && choice <= menuList.size()) {
                 // 하위 카테고리의 메뉴 진행하기
                 startCategory(menuList.get(choice - 1), cart);
-            } else if (choice == menuList.size() + 1) {
+            } else if ((choice == menuList.size() + 1) && !cart.getCart().isEmpty()) {
                 // Orders를 선택한 경우
                 startOrders(cart);
-            } else if (choice == menuList.size() + 2) {
+            } else if ((choice == menuList.size() + 2) && !cart.getCart().isEmpty()) {
                 // Cancel을 선택한 경우
                 startCancel(cart);
             } else if (choice == 0) {

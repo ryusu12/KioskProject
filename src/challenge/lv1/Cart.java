@@ -39,6 +39,10 @@ class Cart {
     }
 
     void deleteCart(int index) {
-        cart.remove(index);
+        try {
+            cart.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("삭제할 수 없습니다.");
+        }
     }
 }
