@@ -67,7 +67,7 @@ class Kiosk {
                         int discount = UserType.values()[choice - 1].getDiscount();
                         double pay = cart.getTotalPrice() * (1 - discount * 0.01);
                         DecimalFormat df = new DecimalFormat("0.0##");
-                        System.out.println("주문이 완료되었습니다. 금액은 W "+df.format(pay)+" 입니다.\n");
+                        System.out.println("주문이 완료되었습니다. 금액은 W " + df.format(pay) + " 입니다.\n");
                         cart.initCart();
                         break;
                     } else {

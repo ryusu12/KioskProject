@@ -15,9 +15,9 @@ public class Main {
     }
 
     /*입력에 맞는 문구를 출력하는 메서드
-    * 1~4 : 선택한 메뉴를 보여준다.
-    * 그외 : 선택지에 없다는 문구 출력 => false 리턴 : 프로그램 계속 진행됨
-    * 0 : 프로그램 종료 => true 리턴 : 프로그램 종료됨 */
+     * 1~4 : 선택한 메뉴를 보여준다.
+     * 그외 : 선택지에 없다는 문구 출력 => false 리턴 : 프로그램 계속 진행됨
+     * 0 : 프로그램 종료 => true 리턴 : 프로그램 종료됨 */
     private boolean processMenu(int choice) {
         switch (choice) {
             case 1:
@@ -49,7 +49,7 @@ public class Main {
     }
 
     /*번호를 입력받는 메서드
-    * int형 외의 것을 입력받으면 -1 리턴 -> 결과 출력시, default로 이동 */
+     * int형 외의 것을 입력받으면 -1 리턴 -> 결과 출력시, default로 이동 */
     private int inputChoice() {
         Scanner scan = new Scanner(System.in);
         try {

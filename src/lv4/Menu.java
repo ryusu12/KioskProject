@@ -23,7 +23,7 @@ public class Menu {
     public void showMenuItems() {
         int num = 0;
         for (MenuItem menuItem : menuItems) {
-            System.out.printf(++num + ". %-17s | W " + menuItem.getPrice() / 1000.0 + " | " + menuItem.getDescription()+"%n", menuItem.getName());
+            System.out.printf(++num + ". %-17s | W " + menuItem.getPrice() / 1000.0 + " | " + menuItem.getDescription() + "%n", menuItem.getName());
         }
     }
 
@@ -36,5 +36,4 @@ public class Menu {
     public String getCategory() {
         return category;
     }
-
 }
