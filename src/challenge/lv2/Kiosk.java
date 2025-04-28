@@ -31,10 +31,10 @@ class Kiosk {
             if (choice >= 1 && choice <= menuList.size()) {
                 // 하위 카테고리의 메뉴 진행하기
                 startCategory(menuList.get(choice - 1), cart);
-            } else if ((choice == menuList.size() + 1) && !cart.getCart().isEmpty()) {
+            } else if ((choice == menuList.size() + 1) && !cart.isEmptyCart()) {
                 // Orders를 선택한 경우
                 startOrders(cart);
-            } else if ((choice == menuList.size() + 2) && !cart.getCart().isEmpty()) {
+            } else if ((choice == menuList.size() + 2) && !cart.isEmptyCart()) {
                 // Cancel을 선택한 경우
                 startCancel(cart);
             } else if (choice == 0) {
@@ -66,7 +66,7 @@ class Kiosk {
                         // 할인율 적용해서 주문하기
                         int discount = UserType.values()[choice - 1].getDiscount();
                         double pay = cart.getTotalPrice() * (1 - discount * 0.01);
-                        DecimalFormat df = new DecimalFormat("#.###");
+                        DecimalFormat df = new DecimalFormat("0.0##");
                         System.out.println("주문이 완료되었습니다. 금액은 W "+df.format(pay)+" 입니다.\n");
                         cart.initCart();
                         break;
@@ -93,9 +93,9 @@ class Kiosk {
             display.showCancel(cart);
             int choice = inputChoice();
 
-            if (choice >= 1 && choice <= cart.getCart().size()) {
+            if (choice >= 1 && choice <= cart.getCartSize()) {
                 // 주문 취소하기
-                cart.deleteCart(choice - 1);
+                cart.deleteCart(cart.getCartItem(choice - 1));
                 System.out.println("주문이 취소되었습니다.");
             } else if (choice == 0) {
                 // 처음으로 돌아가기

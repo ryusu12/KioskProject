@@ -7,16 +7,24 @@ class Cart {
     private final List<CartItem> cart = new ArrayList<>();
 
     /*get*/
-    List<CartItem> getCart() {
-        return cart;
-    }
-
     double getTotalPrice() {
         double totalPrice = 0;
         for (CartItem cartItem : cart) {
             totalPrice += cartItem.getPrice() * cartItem.getCount();
         }
         return totalPrice / 1000.0;
+    }
+
+    int getCartSize() {
+        return cart.size();
+    }
+
+    boolean isEmptyCart() {
+        return cart.isEmpty();
+    }
+
+    CartItem getCartItem(int index) {
+        return cart.get(index);
     }
 
     /*Setter*/
@@ -38,11 +46,14 @@ class Cart {
         cart.clear();
     }
 
-    void deleteCart(int index) {
-        try {
-            cart.remove(index);
-        } catch (IndexOutOfBoundsException e) {
+    void deleteCart(CartItem deleteItem) {
+        CartItem item = cart.stream()
+                .filter(cartItem -> cartItem.getName().equals(deleteItem.getName()))
+                .findFirst().orElse(null);
+        if (item == null) {
             System.out.println("삭제할 수 없습니다.");
+        } else {
+            cart.remove(item);
         }
     }
 }

@@ -1,6 +1,7 @@
 package challenge.lv2;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 class Display {
     /*옵션을 잘못 선택했을 때 출력하는 메서드*/
@@ -11,12 +12,11 @@ class Display {
     /*상위 카테고리 메뉴를 보여주는 메서드*/
     void showMenuList(List<Menu> menuList, Cart cart) {
         System.out.println("[ MAIN MENU ]");
-        int num = 0;
-        for (Menu menu : menuList) {
-            System.out.println(++num + ". " + menu.getCategory());
-        }
+        IntStream.range(0, menuList.size()).forEach(idx ->
+                System.out.println(idx + 1 + ". " + menuList.get(idx).getCategory())
+        );
         System.out.println("0. 종료      | 종료");
-        if (!cart.getCart().isEmpty()) {
+        if (!cart.isEmptyCart()) {
             System.out.println("\n[ ORDER MENU ]");
             System.out.println("4. Orders       | 장바구니를 확인 후 주문합니다.");
             System.out.println("5. Cancel       | 진행중인 주문을 취소합니다.");
@@ -26,11 +26,10 @@ class Display {
     /*하위 카테고리 메뉴를 보여주는 메서드*/
     void showCategoryMenu(Menu menu) {
         System.out.println("\n[ " + menu.getCategory() + " MENU ]");
-        int num = 0;
-        for (MenuItem menuItem : menu.getMenuItems()) {
-            System.out.print(++num + ". ");
-            showSelectMenu(menuItem);
-        }
+        IntStream.range(0, menu.getMenuItems().size()).forEach(idx -> {
+            System.out.print(idx + 1 + ". ");
+            showSelectMenu(menu.getMenuItems().get(idx));
+        });
         System.out.println("0. 뒤로가기");
     }
 
@@ -68,18 +67,18 @@ class Display {
     /*할인 정보를 출력하는 메서드*/
     void showDiscountInfo() {
         System.out.println("\n할인 정보를 입력해주세요.");
-        int num = 0;
-        for (UserType userType : UserType.values()) {
-            System.out.printf(++num + ". %-5s : %2d%%%n", userType.getName(), userType.getDiscount());
-        }
+        UserType[] userType = UserType.values();
+        IntStream.range(0, UserType.values().length).forEach(idx ->
+                System.out.printf(idx + 1 + ". %-5s : %2d%%%n", userType[idx].getName(), userType[idx].getDiscount())
+        );
     }
 
     /*장바구니 목록을 출력하는 메서드*/
     private void showCart(Cart cart) {
-        int num = 0;
-        for (CartItem cartItem : cart.getCart()) {
-            System.out.printf(++num + ". %-17s | W " + cartItem.getPrice() / 1000.0 + " | " + cartItem.getCount() + "개 %n", cartItem.getName());
-        }
+        IntStream.range(0, cart.getCartSize()).forEach(idx -> {
+            CartItem cartItem = cart.getCartItem(idx);
+            System.out.printf(idx + 1 + ". %-17s | W " + cartItem.getPrice() / 1000.0 + " | " + cartItem.getCount() + "개 %n", cartItem.getName());
+        });
     }
 
     /*장바구니의 총 금액을 출력하는 메서드*/
