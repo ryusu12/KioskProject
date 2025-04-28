@@ -26,9 +26,9 @@ class Display {
     /*하위 카테고리 메뉴를 보여주는 메서드*/
     void showCategoryMenu(Menu menu) {
         System.out.println("\n[ " + menu.getCategory() + " MENU ]");
-        IntStream.range(0, menu.getMenuItems().size()).forEach(idx -> {
+        IntStream.range(0, menu.getMenuItemsSize()).forEach(idx -> {
             System.out.print(idx + 1 + ". ");
-            showSelectMenu(menu.getMenuItems().get(idx));
+            showSelectMenu(menu.getMenuItem(idx));
         });
         System.out.println("0. 뒤로가기");
     }

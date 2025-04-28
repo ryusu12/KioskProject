@@ -30,10 +30,10 @@ class Kiosk {
             if (choice >= 1 && choice <= menuList.size()) {
                 // 하위 카테고리의 메뉴 진행하기
                 startCategory(menuList.get(choice - 1), cart);
-            } else if ((choice == menuList.size() + 1) && !cart.getCart().isEmpty()) {
+            } else if ((choice == menuList.size() + 1) && !cart.isEmptyCart()) {
                 // Orders를 선택한 경우
                 startOrders(cart);
-            } else if ((choice == menuList.size() + 2) && !cart.getCart().isEmpty()) {
+            } else if ((choice == menuList.size() + 2) && !cart.isEmptyCart()) {
                 // Cancel을 선택한 경우
                 startCancel(cart);
             } else if (choice == 0) {
@@ -77,7 +77,7 @@ class Kiosk {
             display.showCancel(cart);
             int choice = inputChoice();
 
-            if (choice >= 1 && choice <= cart.getCart().size()) {
+            if (choice >= 1 && choice <= cart.getCartSize()) {
                 // 주문 취소하기
                 cart.deleteCart(choice - 1);
                 System.out.println("주문이 취소되었습니다.");
@@ -100,8 +100,8 @@ class Kiosk {
             int choice = inputChoice();
 
             // 선택한 결과 진행하기
-            if (choice >= 1 && choice <= menu.getMenuItems().size()) {
-                MenuItem menuItem = menu.getMenuItems().get(choice - 1);
+            if (choice >= 1 && choice <= menu.getMenuItemsSize()) {
+                MenuItem menuItem = menu.getMenuItem(choice - 1);
                 // 선택한 메뉴 확인하기
                 System.out.print("선택한 메뉴 : ");
                 display.showSelectMenu(menuItem);

@@ -1,6 +1,6 @@
 package challenge.lv2;
 
-public enum UserType {
+enum UserType {
     //군인, 학생, 일반인
     NATIONAL("국가유공자", 10),
     SOLDIER("군인", 5),

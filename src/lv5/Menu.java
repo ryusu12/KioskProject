@@ -14,12 +14,12 @@ class Menu {
         this.category = category;
     }
 
-    // 메뉴를 리스트에 추가
+    // List에 메뉴 추가하는 메서드
     void addMenuItems(MenuItem menuItem) {
         menuItems.add(menuItem);
     }
 
-    // List에 들어있는 MenuItem을 순차적으로 보여줌
+    // List에 들어있는 MenuItem을 순차적으로 보여주는 메서드
     void showMenuItems() {
         int num = 0;
         for (MenuItem menuItem : menuItems) {
@@ -27,9 +27,14 @@ class Menu {
         }
     }
 
-    // List를 리턴
-    List<MenuItem> getMenuItems() {
-        return menuItems;
+    // List 크기를 리턴하는 메서드
+    int getMenuItemsSize() {
+        return menuItems.size();
+    }
+
+    // List에 들어있는 MenuItem를 인덱스로 하나 리턴하는 메서드
+    MenuItem getMenuItem(int index) {
+        return menuItems.get(index);
     }
 
     // 메뉴 카테고리 이름을 반환

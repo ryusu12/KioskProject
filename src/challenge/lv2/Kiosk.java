@@ -116,8 +116,8 @@ class Kiosk {
             int choice = inputChoice();
 
             // 선택한 결과 진행하기
-            if (choice >= 1 && choice <= menu.getMenuItems().size()) {
-                MenuItem menuItem = menu.getMenuItems().get(choice - 1);
+            if (choice >= 1 && choice <= menu.getMenuItemsSize()) {
+                MenuItem menuItem = menu.getMenuItem(choice - 1);
                 // 선택한 메뉴 확인하기
                 System.out.print("선택한 메뉴 : ");
                 display.showSelectMenu(menuItem);

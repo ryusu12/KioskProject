@@ -16,7 +16,7 @@ class Display {
             System.out.println(++num + ". " + menu.getCategory());
         }
         System.out.println("0. 종료      | 종료");
-        if (!cart.getCart().isEmpty()) {
+        if (!cart.isEmptyCart()) {
             System.out.println("\n[ ORDER MENU ]");
             System.out.println("4. Orders       | 장바구니를 확인 후 주문합니다.");
             System.out.println("5. Cancel       | 진행중인 주문을 취소합니다.");
@@ -26,10 +26,9 @@ class Display {
     /*하위 카테고리 메뉴를 보여주는 메서드*/
     void showCategoryMenu(Menu menu) {
         System.out.println("\n[ " + menu.getCategory() + " MENU ]");
-        int num = 0;
-        for (MenuItem menuItem : menu.getMenuItems()) {
-            System.out.print(++num + ". ");
-            showSelectMenu(menuItem);
+        for (int i = 0; i < menu.getMenuItemsSize(); i++) {
+            System.out.print(i + 1 + ". ");
+            showSelectMenu(menu.getMenuItem(i));
         }
         System.out.println("0. 뒤로가기");
     }
@@ -67,9 +66,8 @@ class Display {
 
     /*장바구니 목록을 출력하는 메서드*/
     private void showCart(Cart cart) {
-        int num = 0;
-        for (CartItem cartItem : cart.getCart()) {
-            System.out.printf(++num + ". %-17s | W " + cartItem.getPrice() / 1000.0 + " | " + cartItem.getCount() + "개 %n", cartItem.getName());
+        for (int i = 0; i < cart.getCartSize(); i++) {
+            System.out.printf(i + 1 + ". %-17s | W " + cart.getCartItem(i).getPrice() / 1000.0 + " | " + cart.getCartItem(i).getCount() + "개 %n", cart.getCartItem(i).getName());
         }
     }
 

@@ -15,15 +15,23 @@ class Menu {
     }
 
     /*Getter*/
-    List<MenuItem> getMenuItems() {
-        return menuItems;
+    // List 크기를 리턴하는 메서드
+    int getMenuItemsSize() {
+        return menuItems.size();
     }
 
+    // List에 들어있는 MenuItem를 인덱스로 하나 리턴하는 메서드
+    MenuItem getMenuItem(int index) {
+        return menuItems.get(index);
+    }
+
+    // 메뉴 카테고리 이름을 반환
     String getCategory() {
         return category;
     }
 
     /*Setter*/
+    // List에 메뉴 추가하는 메서드
     void addMenuItems(MenuItem menuItem) {
         menuItems.add(menuItem);
     }
