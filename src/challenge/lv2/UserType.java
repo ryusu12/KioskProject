@@ -1,7 +1,7 @@
 package challenge.lv2;
 
+/*할인 정보를 담는 열거형*/
 enum UserType {
-    //군인, 학생, 일반인
     NATIONAL("국가유공자", 10),
     SOLDIER("군인", 5),
     STUDENT("학생", 3),

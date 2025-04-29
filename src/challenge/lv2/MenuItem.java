@@ -1,6 +1,6 @@
 package challenge.lv2;
 
-/*개별 음식 항목을 관리하는 클래스*/
+/*개별 메뉴 항목을 관리하는 클래스*/
 class MenuItem {
     private final String name;
     private final int price;

@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-/*키오스크 프로그램의 사용자 입력을 처리하는 클래스*/
+/*키오스크 프로그램 순서 및 흐름 제어를 담당하는 클래스*/
 class Kiosk {
     /*번호를 입력받는 메서드
      * int형 외의 것을 입력받으면 -1 리턴 */

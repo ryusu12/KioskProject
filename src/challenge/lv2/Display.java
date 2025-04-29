@@ -3,6 +3,7 @@ package challenge.lv2;
 import java.util.List;
 import java.util.stream.IntStream;
 
+/*사용자에게 화면을 보여주는 클래스*/
 class Display {
     /*옵션을 잘못 선택했을 때 출력하는 메서드*/
     void showInvalidOption() {

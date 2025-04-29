@@ -3,6 +3,7 @@ package challenge.lv2;
 import java.util.ArrayList;
 import java.util.List;
 
+/*CartItem 클래스를 관리하는 클래스*/
 class Cart {
     private final List<CartItem> cart = new ArrayList<>();
 

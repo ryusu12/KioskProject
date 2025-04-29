@@ -1,5 +1,6 @@
 package challenge.lv2;
 
+/*장바구니에 담기는 메뉴를 관리하는 클래스*/
 class CartItem {
     private final String name;
     private final int price;

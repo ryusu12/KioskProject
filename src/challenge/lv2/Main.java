@@ -2,8 +2,8 @@ package challenge.lv2;
 
 import java.util.List;
 
+/*시작 지점이자 프로그램을 설정하는 클래스*/
 class Main {
-    /*프로그램 설정하는 클래스*/
     public static void main(String[] args) {
         // 메뉴를 설정한다.
         // 버거
